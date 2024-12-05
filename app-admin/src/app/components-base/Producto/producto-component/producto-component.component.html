@@ -25,7 +25,7 @@
                     <img [src]="product.imagenUrl" alt="" style="max-width: 100px; height: auto">
                 </td>
                 <td>
-                    <button type="button" class="btn modern-btn" aria-label="Add">
+                    <button (click)="openModal(modalEdit)" class="btn modern-btn" aria-label="Add">
                         <i class="fas fa-edit"></i>
                     </button>
 
@@ -40,3 +40,9 @@
         </tbody>
     </table>
 </div>
+
+<ng-template #modalEdit>
+   <app-producto-modal>
+
+   </app-producto-modal>
+</ng-template>
