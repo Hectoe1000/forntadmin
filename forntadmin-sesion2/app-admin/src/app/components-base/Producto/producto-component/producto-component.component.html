@@ -1,0 +1,48 @@
+<div class="container">
+    <h1>Pedidos Recientes</h1>
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>ID Producto</th>
+                <th>Producto</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+                <th>
+                    <button type="button" class="btn modern-btn agregar" aria-label="Add">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of producto">
+                <td>{{product.idProducto}}</td>
+                <td>{{product.nombre}} </td>
+                <td> {{product.descripcion}}</td>
+                <td>s/ {{product.precio}}</td>
+                <td>
+                    <img [src]="product.imagenUrl" alt="" style="max-width: 100px; height: auto">
+                </td>
+                <td>
+                    <button (click)="openModal(modalEdit)" class="btn modern-btn" aria-label="Add">
+                        <i class="fas fa-edit"></i>
+                    </button>
+
+                    <button type="button" class="btn modern-delete-btn" aria-label="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<ng-template #modalEdit>
+   <app-producto-modal>
+
+   </app-producto-modal>
+</ng-template>
