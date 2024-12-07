@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url(../../../../../assets/fondo.jpg);
+   
     background-size: cover;
     background-position: center;
     display: flex;
@@ -14,6 +14,8 @@ body {
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    align-items: center;
+    
 }
 
 .container {
@@ -24,9 +26,10 @@ body {
     overflow: hidden;
     width: 100%;
     max-width: 868px;
-    min-height: 480px;
+    min-height: 680px;
     display: flex;
-    margin: auto;
+    margin-top: 3rem;
+    
 }
 
 .form-container {
@@ -123,7 +126,7 @@ button:hover {
 }
 
 .overlay {
-    background: linear-gradient(to right, #153F57, #074b72);
+    background: #a82022;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;

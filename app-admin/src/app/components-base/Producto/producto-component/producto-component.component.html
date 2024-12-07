@@ -8,15 +8,16 @@
                 <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Imagen</th>
+                <th>idCategoria</th>
                 <th>
-                    <button type="button" class="btn modern-btn agregar" aria-label="Add">
+                    <button (click)="crearProducto(modalEdit)" type="button" class="btn modern-btn agregar" aria-label="Add">
                         <i class="fas fa-plus"></i>
                     </button>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let product of producto">
+            <tr *ngFor="let product of productos">
                 <td>{{product.idProducto}}</td>
                 <td>{{product.nombre}} </td>
                 <td> {{product.descripcion}}</td>
@@ -25,7 +26,11 @@
                     <img [src]="product.imagenUrl" alt="" style="max-width: 100px; height: auto">
                 </td>
                 <td>
-                    <button (click)="openModal(modalEdit)" class="btn modern-btn" aria-label="Add">
+                    {{product.idCategoria}}
+                </td>
+                <td>
+
+                    <button (click)="editarProducto(modalEdit,product)" class="btn modern-btn" aria-label="Add">
                         <i class="fas fa-edit"></i>
                     </button>
 
@@ -42,7 +47,12 @@
 </div>
 
 <ng-template #modalEdit>
-   <app-producto-modal>
+   <app-producto-modal 
+   [title]="titleModal"
+    [producto]="productoSelected"
+    [accion]="accionModal"
+    (closeModalEmmit)="getCloseModalEmmit($event)">
+    
 
    </app-producto-modal>
 </ng-template>

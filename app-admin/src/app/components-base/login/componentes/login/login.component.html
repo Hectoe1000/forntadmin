@@ -1,6 +1,6 @@
 <div class="container" id="container">
     <div class="form-container sign-in-container">
-      <form>
+      <form [formGroup]="formlogin">
         <h1>Login</h1>
         <div class="social-container">
           <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -8,16 +8,16 @@
           <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <span>Observa tus redes</span>
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
+        <input formControlName="username" type="email" placeholder="Email" required />
+        <input formControlName="password" type="password" placeholder="Password" required />
         <a href="#">¿Olvidaste tu contraseña?</a>
-        <button class="hover:animate-jump animate-once animate-duration-1000 animate-delay-50">Sign In</button>
+        <button (click)="login()">Sign In</button>
       </form>
     </div>
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-right">
-          <a><img src="../../../../../assets/Logo.png" class="hover:animate-jump animate-once animate-duration" alt="Logo"></a>
+          <a><img src="../../../../../assets/logow.png" class="hover:animate-jump animate-once animate-duration" alt="Logo"></a>
         </div>
       </div>
     </div>

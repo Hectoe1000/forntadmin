@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ProductoModalComponent } from '../modals-template/producto-modal/producto-modal.component';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AccionMantConst } from '../../constans/accionConstanst';
 @Component({
   selector: 'app-producto-component',
   standalone: true,
@@ -16,9 +17,14 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class ProductoComponentComponent implements OnInit {
 
 
+  // Inicializa las variables 
+
+  productos:ProductoResponse[]=[];
   
-  producto:ProductoResponse[]=[];
+  productoSelected: ProductoResponse = new ProductoResponse();
   modalRef?: BsModalRef;
+  titleModal: string = "";
+  accionModal: number = 0;
 
   constructor(
     private _productoServices:ProductoResponseService,
@@ -37,9 +43,9 @@ export class ProductoComponentComponent implements OnInit {
     this._productoServices.get().subscribe({
 
       next: (data: ProductoResponse[]) => {
-        this.producto = data;
+        this.productos = data;
        
-        console.log(this.producto)
+        console.log(this.productos)
       },
       error: (err) => {
         console.log("error ", err);
@@ -52,9 +58,42 @@ export class ProductoComponentComponent implements OnInit {
 
 }
 
+// Personalizar el modal 
 
+// abre el modal
 openModal(template: TemplateRef<any>) {
   this.modalRef = this.modalService.show(template);
+}
+
+
+
+
+
+crearProducto(template: TemplateRef<any>) {
+  this.productoSelected = new ProductoResponse();
+  this.titleModal = "NUEVO producto";
+  this.accionModal = AccionMantConst.crear;
+  this.openModal(template);
+}
+
+
+editarProducto(template: TemplateRef<any>, product: ProductoResponse) {
+  this.productoSelected = product;
+  this.titleModal = "EDITAR CARGO";
+  this.accionModal = AccionMantConst.editar;
+  this.openModal(template);
+}
+
+
+
+getCloseModalEmmit(res:boolean)
+{
+  this.modalRef?.hide();
+  if(res)
+  {
+    this.listarCargos();
+  }
+
 }
 
 
