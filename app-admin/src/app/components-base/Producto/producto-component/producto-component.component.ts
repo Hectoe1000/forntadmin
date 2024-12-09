@@ -97,4 +97,22 @@ getCloseModalEmmit(res:boolean)
 }
 
 
+
+eliminarRegistro(id: number) {
+  let result = confirm("¿Está seguro de eliminar el registro?");
+
+  if (result) {
+    this._productoServices.delete(id).subscribe({
+      next: (data: number) => {
+        alert("Registro eliminado de forma correcta");
+      },
+      error: () => { },
+      complete: () => {
+        this.listarCargos();
+      }
+    });
+  }
+
+}
+
 }

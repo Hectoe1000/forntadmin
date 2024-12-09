@@ -6,18 +6,18 @@ import { ProductoResponseService } from '../../services/producto-response.servic
 import { AccionMantConst } from '../../../constans/accionConstanst';
 import { CommonModule } from '@angular/common';
 import { CloudService } from '../../../cloudynary/cloud.service';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @Component({
   selector: 'app-producto-modal',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NgxDropzoneModule],
   templateUrl: './producto-modal.component.html',
-  styleUrl: './producto-modal.component.css'
+  styleUrls: ['./producto-modal.component.css']
 })
 export class ProductoModalComponent {
-
-  // declaracion de entradas de variables
+  
+  // Declaración de entradas de variables
   @Input() title: string = "";
   @Input() producto: ProductoResponse = new ProductoResponse();
   @Input() accion: number = 0;
@@ -28,141 +28,121 @@ export class ProductoModalComponent {
   imageUrls: string[] = [];
   moduleForm: FormGroup;
   ProductoEnvio: ProductoRequest = new ProductoRequest();
+  
   /**TODO: DECLARANDO EL CONSTRUCTOR */
-
   constructor(
     private fb: FormBuilder,
     private _productoService: ProductoResponseService,
-    private _cloudinaryService:CloudService
+    private _cloudinaryService: CloudService
   ) {
-    //nuestro formulario cargo request
+    // Inicializando el formulario reactivo
     this.moduleForm = this.fb.group({
       idProducto: [{ value: 0, disabled: true }, [Validators.required]],
       nombre: [null, [Validators.required]],
       descripcion: [null, [Validators.required]],
       precio: [null, [Validators.required]],
-      imagenUrl: [null, [Validators.required]],
+      imagenUrl: [null, [Validators.required]],  // Campo donde almacenamos la URL de la imagen
       idCategoria: [null, [Validators.required]],
     });
   }
- 
-  guardar() {
-debugger
 
+  guardar() {
     switch (this.accion) {
       case AccionMantConst.crear:
+         
         this.crearRegistro();
+          
         break;
       case AccionMantConst.editar:
         this.editarRegistro();
         break;
-      // inactivar
       case AccionMantConst.eliminar:
-        // eliminar registro
+        // Lógica para eliminar
         break;
     }
-
-
   }
 
-  editarRegistro()
-  {
+  editarRegistro() {
     this._productoService.update(this.ProductoEnvio).subscribe({
-      next:(data:ProductoResponse)=>{
-        alert("actualizado de forma correcta");
+      next: (data: ProductoResponse) => {
+        alert("Actualizado correctamente");
       },
-      error:()=>{
-        alert("Ocurrio un erro");
+      error: () => {
+        alert("Ocurrió un error");
       },
-      complete:()=>{
+      complete: () => {
         this.cerrarModal(true);
       }
     });
   }
 
-
-
-  
   cerrarModal(res: boolean) {
-    //true ==> hubo modificación en base de datos ==> necesito volver a cargar la lista
-    //false ==> NO hubo modificación en base de datos ==> NOOOOOO necesito volver a cargar la lista
     this.closeModalEmmit.emit(res);
-}
+  }
 
-
-crearRegistro()
-  {
-    debugger;
-    this.ProductoEnvio = this.moduleForm.getRawValue()
-
+  crearRegistro() {
+    this.ProductoEnvio = this.moduleForm.getRawValue();
+    
     this._productoService.create(this.ProductoEnvio).subscribe({
-      next:(data:ProductoResponse)=>{
-        alert("creado de forma correcta");
+      next: (data: ProductoResponse) => {
+       
+        alert("Creado correctamente");
+        
       },
-      error:()=>{
-        alert("Ocurrio un erro");
+      error: () => {
+        alert("Ocurrió un error");
       },
-      complete:()=>{
+      complete: () => {
         this.cerrarModal(true);
       }
     });
   }
 
-
-// servicio cloud
-
+  // Servicio para subir la imagen a Cloudinary
   files: File[] = [];
 
-  onSelect(event:any) {
+  
+  onSelect(event: any) {
     console.log(event);
     this.files.push(...event.addedFiles);
-  }
+    this.subir();
+}
   
-  onRemove(event:any) {
+
+  onRemove(event: any) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
+  subir() {
+    if (this.files.length === 0) return false;  // Verifica si hay archivos para subir
+    const file_data = this.files[0];
+    const data = new FormData();
+    data.append('file', file_data);
+    data.append('upload_preset', 'image_upload');
+    data.append('cloud_name', 'dif6hsyhq');
   
-  subir(){
-    if(this.files.length===0) return false
-    const file_data=this.files[0];
-    const data =new FormData();
-    data.append('file' ,file_data);
-    data.append('upload_preset','image_upload');
-    data.append('cloud_name','dif6hsyhq')
-    
-    
-    const mostrar = document.querySelector('#imagen') as HTMLImageElement;
-
-    
-    this._cloudinaryService.uploading(data).subscribe(
-      {
-        next: (response: any) => {
-          console.log(response); // Aquí ves toda la respuesta de Cloudinary
-    
-          const imageUrl = response.secure_url; // Extraer el enlace de la imagen subida
-          console.log('URL de la imagen subida:', imageUrl);
-          
-          // Realizar algo con el enlace (por ejemplo, guardarlo en tu base de datos)
-          alert('Imagen subida correctamente');
-          
-          mostrar.src=imageUrl
-    
-        },
-        error: (e: any) => {
-          console.log(e);
-          alert('Error al subir la imagen');
-        },
-
-    })
-
-   
+    this._cloudinaryService.uploading(data).subscribe({
+      next: (response: any) => {
+        const imageUrl = response.secure_url; // URL de la imagen subida
+        this.moduleForm.get('imagenUrl')?.setValue(imageUrl); // Actualiza el formulario con la URL
+      alert('Imagen cargada')
+        const mostrar = document.querySelector('#imagen') as HTMLImageElement;
+        mostrar.src = imageUrl;
+      },
+      error: (e: any) => {
+        console.log(e); // Ver error detallado si ocurre
+        alert('Error al subir la imagen');
+      }
+    });
+  
     return true;
   }
+   
 
 
- 
+
+
 
 
 

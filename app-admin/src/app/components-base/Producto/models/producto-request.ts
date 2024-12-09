@@ -4,5 +4,5 @@ export class ProductoRequest {
     descripcion: string ="";
     precio: number =0;
     imagenUrl: string ="";
-     idCategoria: number =0;
+    idCategoria: number =0;
  }

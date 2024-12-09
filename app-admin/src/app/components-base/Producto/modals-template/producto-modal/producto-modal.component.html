@@ -39,7 +39,34 @@
 
                 <div class="form-group">
                     <label for="">Imagen</label>
-                    <input formControlName="imagenUrl" type="text" class="form-control" placeholder="Ingrese el código">
+                    <input formControlName="imagenUrl" type="hidden" class="form-control" placeholder="Ingrese el código">
+                   
+                    <!-- ingreso de kla imagen a cloud -->
+                    
+                    
+                    <div>
+                        <ngx-dropzone (change)="onSelect($event)">
+                            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                            </ngx-dropzone-preview>
+                        </ngx-dropzone>
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                          </ngx-dropzone-image-preview>
+                        
+                    </div>
+                          <!-- video -->
+                        
+                          <!-- <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                          </ngx-dropzone-video-preview>
+                           -->
+                        
+                        
+                       
+                      </div>
+                      
                 </div>
                 
 
@@ -72,7 +99,6 @@
 
             </div>
 
-            </div>
+           
     </form>
 
-</div>
