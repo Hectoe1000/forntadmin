@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductoResponse } from '../../models/producto-response';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductoRequest } from '../../models/producto-request';
@@ -15,7 +15,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
   templateUrl: './producto-modal.component.html',
   styleUrls: ['./producto-modal.component.css']
 })
-export class ProductoModalComponent {
+export class ProductoModalComponent implements OnInit {
   
   // Declaración de entradas de variables
   @Input() title: string = "";
@@ -45,6 +45,9 @@ export class ProductoModalComponent {
       idCategoria: [null, [Validators.required]],
     });
   }
+  ngOnInit(): void {
+    this.moduleForm.patchValue(this.producto);
+  }
 
   guardar() {
     switch (this.accion) {
@@ -62,13 +65,26 @@ export class ProductoModalComponent {
     }
   }
 
+
   editarRegistro() {
+   
     this._productoService.update(this.ProductoEnvio).subscribe({
       next: (data: ProductoResponse) => {
+            
+        console.log("Producto a enviar:", this.ProductoEnvio);
+
         alert("Actualizado correctamente");
       },
-      error: () => {
-        alert("Ocurrió un error");
+      error: (err) => {
+        console.error("Error al actualizar el producto:", err);
+        if (err.status === 500) {
+          console.log("Producto a enviar:", this.ProductoEnvio);
+          alert("Error interno del servidor.");
+        } else if (err.status === 400) {
+          alert("Solicitud inválida. Revisa los datos.");
+        } else {
+          alert("Ocurrió un error inesperado.");
+        }
       },
       complete: () => {
         this.cerrarModal(true);

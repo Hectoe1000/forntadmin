@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>lISTA DE CLIENTES</h1>
+    <table class="orders-table">
+        <thead>
+            <tr>
+                <th>ID usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Contraseña</th>
+                <th>
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuarios of usuario">
+                <td>{{usuarios.idUsuario}}</td>
+                <td>{{usuarios.usuNombre}} </td>
+                <td> {{usuarios.usuApellido}}</td>
+                <td>{{usuarios.telefono}}</td>
+                <td>{{usuarios.email}}</td>
+                <td>
+                    {{usuarios.contrasena}}
+                </td>
+<!-- 
+                    <button (click)="editarProducto(modalEdit,product)" class="btn modern-btn" aria-label="Add">
+                        <i class="fas fa-edit"></i>
+                    </button>
+
+                    <button type="button"  (click)="eliminarRegistro(product.idProducto)" class="btn modern-delete-btn" aria-label="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button> -->
+
+                
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ngx-dropzone-wrapper": "^17.0.0"
+  }
+}

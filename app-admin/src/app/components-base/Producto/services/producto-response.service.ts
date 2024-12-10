@@ -30,6 +30,7 @@ create(request: ProductoRequest): Observable<ProductoResponse> {
   }
 
   update(request: ProductoRequest): Observable<ProductoResponse> {
+  
   return this._http.put<ProductoResponse>(urlConstants.producto, request);
   }
   

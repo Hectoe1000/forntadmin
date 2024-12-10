@@ -5,7 +5,7 @@ export const urlConstants = {
 
     producto: dominio + "api/producto/",
     rol: dominio + "api/rol/",
-    usuario: dominio + "api/usuario/",
+    usuario: dominio + "api/Usuario/",
     persona: dominio + "api/persona/",
     auth: dominio + "api/Auth/"
 

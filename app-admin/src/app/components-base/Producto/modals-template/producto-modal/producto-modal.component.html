@@ -12,11 +12,12 @@
             <div class="col-12 mt-3">
                 <div class="form-group">
                     <label for="">ID Producto</label>
-                    <input formControlName="idProducto" type="number" class="form-control" placeholder="Ingrese el código">
+                    <input formControlName="idProducto" type="number" class="form-control"
+                        placeholder="Ingrese el código">
                 </div>
 
                 <!-- Obliga al cliente  a poder registrar un dato  -->
-                
+
                 <!-- Obliga al cliente  a poder registrar un dato  -->
 
                 <div class="form-group">
@@ -25,25 +26,28 @@
                 </div>
                 
 
+
                 <div class="form-group">
                     <label for="">Descripcion</label>
-                    <input formControlName="descripcion" type="text" class="form-control" placeholder="Ingrese el código">
+                    <input formControlName="descripcion" type="text" class="form-control"
+                        placeholder="Ingrese el código">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="">Precio</label>
                     <input formControlName="precio" type="number" class="form-control" placeholder="Ingrese el código">
                 </div>
-                
+
 
 
                 <div class="form-group">
                     <label for="">Imagen</label>
-                    <input formControlName="imagenUrl" type="hidden" class="form-control" placeholder="Ingrese el código">
-                   
+                    <input formControlName="imagenUrl" type="hidden" class="form-control"
+                        placeholder="Ingrese el código">
+
                     <!-- ingreso de kla imagen a cloud -->
-                    
-                    
+
+
                     <div>
                         <ngx-dropzone (change)="onSelect($event)">
                             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
@@ -51,54 +55,48 @@
                                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                             </ngx-dropzone-preview>
                         </ngx-dropzone>
-                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+                        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files"
+                            [file]="f">
                             <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                          </ngx-dropzone-image-preview>
-                        
+                        </ngx-dropzone-image-preview>
+
                     </div>
-                          <!-- video -->
-                        
-                          <!-- <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                          </ngx-dropzone-video-preview>
-                           -->
-                        
-                        
-                       
-                      </div>
-                      
-                </div>
-                
 
 
-                <div class="form-group">
-                    <label for="">idCategoria</label>
-                    <input formControlName="idCategoria" type="number" class="form-control" placeholder="Ingrese el código">
+
                 </div>
-        
+
             </div>
 
 
-            <!-- <div *aaaaaaa="moduleForm.get('nombre')?.errors &&  moduleForm.touched "> -->
-            <!-- <small class="text-danger" *aaaaaaa="moduleForm.get('nombre')?.hasError('required')"> Campo requerido
+
+            <div class="form-group">
+                <label for="">idCategoria</label>
+                <input formControlName="idCategoria" type="number" class="form-control" placeholder="Ingrese el código">
+            </div>
+
+        </div>
+
+
+        <!-- <div *aaaaaaa="moduleForm.get('nombre')?.errors &&  moduleForm.touched "> -->
+        <!-- <small class="text-danger" *aaaaaaa="moduleForm.get('nombre')?.hasError('required')"> Campo requerido
                     </small> -->
 
-            <!-- </div> -->
+        <!-- </div> -->
 
 
 
-            <div class="col-6 mt-3">
-                <div class="d-grid gap-2">
-                    <button class="btn-block btn btn-primary btn-sm" (click)="guardar()" >GUARDAR</button>
-                </div>
+        <div class="col-6 mt-3">
+            <div class="d-grid gap-2">
+                <button class="btn-block btn btn-primary btn-sm" (click)="guardar()">GUARDAR</button>
             </div>
-            <div class="col-6 mt-3">
-                <div class="d-grid gap-2">
-                    <button class="btn-block btn btn-danger btn-sm">CANCELAR</button>
-                </div>
-
+        </div>
+        <div class="col-6 mt-3">
+            <div class="d-grid gap-2">
+                <button class="btn-block btn btn-danger btn-sm">CANCELAR</button>
             </div>
 
-           
+        </div>
+
+
     </form>
-

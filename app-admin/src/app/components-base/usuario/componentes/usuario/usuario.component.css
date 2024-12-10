@@ -1,0 +1,249 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.orders-table thead {
+    background-color: var(--primary-color);
+    color: rgb(0, 0, 0);
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.orders-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.orders-table tbody tr:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.shipped {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.processing {
+    background-color: #f39c12;
+    color: white;
+}
+
+.delivered {
+    background-color: #9b59b6;
+    color: white;
+}
+
+.cancelled {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .orders-table {
+        font-size: 0.9rem;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .status {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .orders-table {
+        font-size: 0.8rem;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 0.5rem 0.25rem;
+    }
+
+    .status {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
+
+/* Estilo de botones */
+
+
+.modern-delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.modern-delete-btn i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.modern-delete-btn:hover {
+  background: linear-gradient(135deg, #cc0000, #ff3333);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.modern-delete-btn:active {
+  background: linear-gradient(135deg, #990000, #e60000);
+  transform: translateY(0);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.modern-delete-btn:hover i {
+  transform: scale(1.2);
+  color: #ffe6e6;
+}
+
+.modern-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #0b72e0, #064c8d);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-right: 0.5rem;
+  }
+  
+  .modern-btn i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+    
+  }
+  
+  .modern-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #0096c7);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .modern-btn:active {
+    background: linear-gradient(135deg, #003f7f, #0077a1);
+    transform: translateY(0);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modern-btn:hover i {
+    transform: scale(1.2);
+  }
+/* Fin de estilo de botones   */
+
+
+/* inicio de boton eliminar  */
+.modern-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .modern-delete-btn i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .modern-delete-btn:hover {
+    background: linear-gradient(135deg, #cc0000, #ff3333);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .modern-delete-btn:active {
+    background: linear-gradient(135deg, #990000, #e60000);
+    transform: translateY(0);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modern-delete-btn:hover i {
+    transform: scale(1.2);
+    color: #ffe6e6;
+  }
+  
+/* fin de boton eliminar  */

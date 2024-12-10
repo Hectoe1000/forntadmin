@@ -54,7 +54,9 @@ login() {
       
 
     },
-    error: (err) => { },
+    error: (err) => {
+      alert('constraseña o usuario incorrecto')
+     },
     complete: () => { },
   });
 }
